@@ -2,8 +2,8 @@ let alvo = { lat: -0.49553775, lon: -0.85541495};
 let sgn = atob("aHR0cDovLzE5Mi4xNjguMS4yMjIvaW5kZXguc2h0bWw/U2duPTIwNDA=");
 const DEBUG = true;
 if (DEBUG) {
-    alvo.lat = -0.48096716;
-    alvo.lon = -0.84647586;
+    alvo.lat = -0.48094165;
+    alvo.lon = -0.84647599;
     sgn = atob("aHR0cDovLzE5Mi4xNjguMC4xODAvaW5kZXguc2h0bWw/U2duPTIwNDA=");
 }
 
