@@ -1,9 +1,9 @@
-let alvo = { lat: -0.49554, lon: -0.85541 };
+let alvo = { lat: -0.49553775, lon: -0.85541495};
 let sgn = atob("aHR0cDovLzE5Mi4xNjguMS4yMjIvaW5kZXguc2h0bWw/U2duPTIwNDA=");
-const DEBUG = false;
+const DEBUG = true;
 if (DEBUG) {
-    alvo.lat = -0.48095;
-    alvo.lon = -0.84647;
+    alvo.lat = -0.48096716;
+    alvo.lon = -0.84647586;
     sgn = atob("aHR0cDovLzE5Mi4xNjguMC4xODAvaW5kZXguc2h0bWw/U2duPTIwNDA=");
 }
 
@@ -36,8 +36,8 @@ function verificar(pos) {
     status.innerText = "Distância: " + dist.toFixed(3) + " km " +
         (acc > 50 ? " ⚠️ GPS impreciso" : "");;
     extra.innerText =
-        "Lat: " + lat.toFixed(4) +
-        " | Lon: " + lon.toFixed(4) +
+        "Lat: " + lat.toFixed(6) +
+        " | Lon: " + lon.toFixed(6) +
         " | Prec: " + acc.toFixed(0) + "m" +
         " | #" + cont;
     if (acc > 50) {
