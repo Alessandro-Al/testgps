@@ -1,11 +1,8 @@
-let alvo = {
-    lat: -0.49554,
-    lon: -0.85541
-};
+let alvo = { lat: -0.49554, lon: -0.85541 };
 let sgn = atob("aHR0cDovLzE5Mi4xNjguMS4yMjIvaW5kZXguc2h0bWw/U2duPTIwNDA=");
-const DEBUG = true;
+const DEBUG = false;
 if (DEBUG) {
-  alvo.lat = -0.48095;
+    alvo.lat = -0.48095;
     alvo.lon = -0.84647;
     sgn = atob("aHR0cDovLzE5Mi4xNjguMC4xODAvaW5kZXguc2h0bWw/U2duPTIwNDA=");
 }
@@ -21,7 +18,6 @@ const extra = document.getElementById("extra");
 const toRad = x => x * Math.PI / 180;
 function distancia(lat1, lon1, lat2, lon2) {
     const R = 6371000;
-   
     const dLat = (lat2 - lat1);
     const dLon = (lon2 - lon1);
     const a =
@@ -35,7 +31,7 @@ function verificar(pos) {
     const lat = pos.coords.latitude;
     const lon = pos.coords.longitude;
     const acc = pos.coords.accuracy;
-    const dist = distancia(toRad(lat), toRad(lon), alvo.lat, alvo.lon)/1000;
+    const dist = distancia(toRad(lat), toRad(lon), alvo.lat, alvo.lon) / 1000;
     cont++;
     status.innerText = "Distância: " + dist.toFixed(3) + " km " +
         (acc > 50 ? " ⚠️ GPS impreciso" : "");;
