@@ -1,182 +1,23 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
-<meta charset="UTF-8">
-<title>Controle por Localização</title>
-
-<style>
-body {
-  font-family: Arial, sans-serif;
-  background: #0f172a;
-  color: #e2e8f0;
-  text-align: center;
-  padding: 30px;
-}
-
-.card {
-  background: #1e293b;
-  border-radius: 15px;
-  padding: 25px;
-  max-width: 400px;
-  margin: auto;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.4);
-}
-
-h2 {
-  margin-bottom: 10px;
-}
-
-#status {
-  font-size: 14px;
-  color: #94a3b8;
-  display: block;
-  margin-bottom: 20px;
-}
-
-button {
-  width: 100%;
-  padding: 15px;
-  font-size: 18px;
-  border: none;
-  border-radius: 10px;
-  cursor: pointer;
-  transition: 0.2s;
-}
-
-button:disabled {
-  background: #334155;
-  color: #94a3b8;
-}
-
-button.enabled {
-  background: #22c55e;
-  color: white;
-}
-
-button.enabled:hover {
-  background: #16a34a;
-}
-
-.info {
-  margin-top: 15px;
-  font-size: 13px;
-  color: #cbd5f5;
-}
-.empresa {
-  font-size: 28px;
-  font-weight: bold;
-  color: #38bdf8;
-  margin-bottom: 10px;
-  letter-spacing: 1px;
-}
-</style>
-
+  <meta charset="UTF-8">
+  <title>Controle por Localização</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="fun.js" defer></script>
 </head>
+
 <body>
-
-<div class="card">
-  <h1 class="empresa">LENKE controle portão</h1>
-  <h2>📍 Controle por Localização</h2>
-  <span id="status">Verificando...</span>
-
-  <button onclick="Pulse()" id="btn" disabled>
-    Bloqueado ❌
-  </button>
-
-  <div class="info" id="extra"></div>
-</div>
-
-<script>
-const alvo = {
-  lat: -28.3922,
-  lon: -49.0116
-};
-
-
- const sgn = atob("aHR0cDovLzE5Mi4xNjguMS4yMjIvaW5kZXguc2h0bWw/U2duPTIwNDA=");
-
- 
-const RAIO_ON = 100;
-const RAIO_OFF = 120;
-
-let dentro = false;
-let cont = 0;
-
-const status = document.getElementById("status");
-const btn = document.getElementById("btn");
-const extra = document.getElementById("extra");
-
-function distancia(lat1, lon1, lat2, lon2) {
-  const R = 6371000;
-  const toRad = x => x * Math.PI / 180;
-
-  const dLat = toRad(lat2 - lat1);
-  const dLon = toRad(lon2 - lon1);
-
-  const a =
-    Math.sin(dLat/2)**2 +
-    Math.cos(toRad(lat1)) * Math.cos(toRad(lat2)) *
-    Math.sin(dLon/2)**2;
-
-  return 2 * R * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
-}
-
-function verificar(pos) {
-  const lat = pos.coords.latitude;
-  const lon = pos.coords.longitude;
-  const acc = pos.coords.accuracy;
-
-  const dist = distancia(lat, lon, alvo.lat, alvo.lon);
-
-  cont++;
-
-  status.innerText = "Distância: " + dist.toFixed(1) + " m "+
-   (acc > 50 ? " ⚠️ GPS impreciso" : "");;
-
-  extra.innerText =
-    "Lat: " + lat.toFixed(4) +
-    " | Lon: " + lon.toFixed(4) +
-    " | Prec: " + acc.toFixed(0) + "m" +
-    " | #" + cont;
-
-  if (acc > 50) {
-  //  status.innerText += "GPS impreciso...";
- //   return;
-  }
-
-  if (!dentro && dist < RAIO_ON) {
-    dentro = true;
-    btn.disabled = false;
-    btn.innerText = "Liberado ✅";
-    btn.classList.add("enabled");
-  }
-
-  if (dentro && dist > RAIO_OFF) {
-    dentro = false;
-    btn.disabled = true;
-    btn.innerText = "Bloqueado ❌";
-    btn.classList.remove("enabled");
-  }
-
- 
-}
-
-function erro(e) {
-  btn.disabled = true;
-  btn.innerText = "Erro GPS ❌";
-  status.innerText = "Erro: " + e.message;
-}
-
-function Pulse() {
-  fetch(sgn)
-    .then(() => console.log("Pulso enviado"))
-    .catch(err => console.log("Erro:", err));
-}
-
-navigator.geolocation.watchPosition(verificar, erro, {
-  enableHighAccuracy: true
-});
-</script>
-
+  <div class="card">
+    <h1 class="empresa">LENKE controle portão</h1>
+    <h2>📍 Controle por Localização</h2>
+    <span id="status">Verificando...</span>
+    <button onclick="Pulse()" id="btn" disabled>
+      Bloqueado ❌
+    </button>
+    <div class="info" id="extra"></div>
+  </div>
 </body>
+
 </html>

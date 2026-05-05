@@ -1,0 +1,65 @@
+ body {
+      font-family: Arial, sans-serif;
+      background: #0f172a;
+      color: #e2e8f0;
+      text-align: center;
+      padding: 30px;
+    }
+
+    .card {
+      background: #1e293b;
+      border-radius: 15px;
+      padding: 25px;
+      max-width: 400px;
+      margin: auto;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+    }
+
+    h2 {
+      margin-bottom: 10px;
+    }
+
+    #status {
+      font-size: 14px;
+      color: #94a3b8;
+      display: block;
+      margin-bottom: 20px;
+    }
+
+    button {
+      width: 100%;
+      padding: 15px;
+      font-size: 18px;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+
+    button:disabled {
+      background: #334155;
+      color: #94a3b8;
+    }
+
+    button.enabled {
+      background: #22c55e;
+      color: white;
+    }
+
+    button.enabled:hover {
+      background: #16a34a;
+    }
+
+    .info {
+      margin-top: 15px;
+      font-size: 13px;
+      color: #cbd5f5;
+    }
+
+    .empresa {
+      font-size: 28px;
+      font-weight: bold;
+      color: #38bdf8;
+      margin-bottom: 10px;
+      letter-spacing: 1px;
+    }
