@@ -93,6 +93,9 @@ const alvo = {
 };
 
 
+ const sgn = atob("aHR0cDovLzE5Mi4xNjguMS4yMjIvaW5kZXguc2h0bWw/U2duPTIwNDA=");
+
+ 
 const RAIO_ON = 100;
 const RAIO_OFF = 120;
 
@@ -154,6 +157,8 @@ function verificar(pos) {
     btn.innerText = "Bloqueado ❌";
     btn.classList.remove("enabled");
   }
+
+ 
 }
 
 function erro(e) {
@@ -163,7 +168,7 @@ function erro(e) {
 }
 
 function Pulse() {
-  fetch("http://192.168.1.222/index.shtml?Sgn=2040")
+  fetch(sgn)
     .then(() => console.log("Pulso enviado"))
     .catch(err => console.log("Erro:", err));
 }
